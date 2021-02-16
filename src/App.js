@@ -8,34 +8,40 @@ import {
   Link
 } from "react-router-dom";
 import logo from './logo.svg';
+import spectogram from "./Spectrogram-19thC.png"
+import tmh from "./tmh.png"
 import './App.css';
 import { Fruit } from "./Fruit"
 import ulme from "./ulme.jpeg"
 import anna from "./anna.jpeg"
 import birger from "./birger2.jpeg"
+import Birger from "./birger/App"
+
 
 export default function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
+      <div className="App-container">
+        <nav className="Nav-bar">
+     
+        <Link to="/"><img className="logo" width="100px" height="100px" src={logo}></img></Link>
+  
+            <div>
               <Link to="/">Home</Link>
-            </li>
-            <li>
+            </div>
+            <div>
               <Link to="/about">About</Link>
-            </li>
-            <li>
+            </div>
+            <div>
               <Link to="/ulme">Ulme</Link>
-            </li>
-            <li>
+            </div>
+            <div>
               <Link to="/anna">Anna</Link>
-            </li>
-            <li>
+            </div>
+            <div>
               <Link to="/birger">Birger</Link>
-            </li>
-          </ul>
+            </div>
+
         </nav>
 
         {/* A <Switch> looks through its children <Route>s and
@@ -54,13 +60,53 @@ export default function App() {
             <Birger />
           </Route>
           <Route path="/">
-            <Home />
+            <Front />
           </Route>
         </Switch>
+
+
+
+        <Footer></Footer>
+
       </div>
     </Router>
   );
 }
+
+function Footer(props) {
+  return (
+    <div className="Footer-container">
+
+      <img className="logo" width="300px" src={tmh}></img>
+      <p>Tal Musik Hörsel 2020 ©</p>
+    </div>
+  )
+}
+
+
+function Front(props) {
+  return (
+    <div className="Front-container">
+
+      <h1>Speech Music and Hearing</h1>
+
+      <div>
+      <p>The department of speech music and hearing is really cool.</p>
+      </div>
+
+      <img width="400px" height="400px" src={spectogram}></img>
+      <p>This is a spectogram, a visual representation of a sound.</p>
+
+      <p><Link to="/birger">Birger</Link> does research on speech and Alzheimer</p>
+
+      <p> <Link to="/ulme">Ulme</Link> does research on transformers</p>
+
+      <p> <Link to="/anna">Anna</Link> does research on face animation</p>
+
+    </div>
+  )
+}
+
 
 function Home(props) {
 
@@ -142,6 +188,6 @@ function Anna() {
   return  <Home imgSource={anna} person="Anna"></Home>
 }
 
-function Birger() {
-  return  <Home imgSource={birger} person="Birger"></Home>
-}
+// function Birger() {
+//   return  <Home imgSource={birger} person="Birger"></Home>
+// }
