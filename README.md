@@ -1,5 +1,5 @@
 ## TMH Visualisation project
-<img src="https://i.imgur.com/IvOoLTV.jpg" width="300">
+<img src="https://i.imgur.com/IvOoLTV.jpg" width="100%">
 This project shows visualisations for TMH Phd Students.
 
 ### Setup
