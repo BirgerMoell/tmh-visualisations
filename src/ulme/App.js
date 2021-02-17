@@ -2,13 +2,8 @@ import React, { useState, useEffect } from 'react'
 import './App.css';
 import * as d3 from "d3";
 
-
-function displayData(props) {
-
-}
-
 function DataLoader(props) {
-
+    
     const MARGIN = { LEFT: 100, RIGHT: 10, TOP: 10, BOTTOM: 130 }
     const WIDTH = 1200 - MARGIN.LEFT - MARGIN.RIGHT
     const HEIGHT = 800 - MARGIN.TOP - MARGIN.BOTTOM
@@ -75,15 +70,15 @@ function DataLoader(props) {
         .call(yAxisCall)
 
 
-        d3.interval(() => {
-          update(data)
-        }, 1000)
+        // d3.interval(() => {
+        //   update(data)
+        // }, 1000)
       
         const update = (data) => {
 
-            if (data) {
-
-                const t = d3.transition().duration(750)
+            console.log("the data is", data)
+            
+                const t = d3.transition().duration(250)
 
                 // JOIN new data with old elements.
                 const rects = g.selectAll("rect")
@@ -106,10 +101,10 @@ function DataLoader(props) {
                   .attr("height", d => y(Number(d[y_value])))
                   .attr("fill", d => d.diagnose === "Healthy" ? "lightgreen" : d.diagnose === "MCI" ? "lightblue": "pink")
 
-            }
-
-       
         }
+
+
+        update(data)
 
 
   return (
@@ -123,73 +118,36 @@ function App() {
 
   const [data, setData] = useState()
 
-   useEffect(() => {
-    const loadData = async () => {
-      //console.log("the d3 is", d3)
-      let uri = './data/biomarkers/diagnose_count.csv' 
-      let result = await d3.csv(uri)
-      setData( {"value": result,
-              "dataset": "diagnose_count",
-              "x": "diagnose",
-              "y": "count"
-            })
-      console.log("the data is", result)
-    }
-     if (!data) {
-      loadData()
-     }
-    
-
-  }, [data]);
-
-
-  const selectLoadData = async (value) => {
-        let uri = "./data/biomarkers/" + value + ".csv"
-        let result = await d3.csv(uri)
-        let labels = setXandY(value, result.columns)
-        console.log("the labels are ", labels)
-        setData( {"value": result,
-        "dataset": value,
-        "x": labels.x,
-        "y": labels.y
-      })
+  const loadData = async () => {
+    let uri = './data/models.csv' 
+    let result = await d3.csv(uri)
+    setData( {"value": result,
+            "dataset": "models",
+            "x": "model",
+            "y": "parameters"
+          })
+    console.log("the data is", result)
   }
 
-  const setXandY = (dataset, columns) => {
-    if (dataset === "result_biomarkers") {
-      return {
-        "x": columns[3],
-        "y": columns[4],
-      }
-    } else {
-      return {
-        "x": columns[0],
-        "y": columns[1],
-      }
+   useEffect(() => {  
+    if (!data) {
+     loadData()
     }
-  }
+    console.log('t');
+  });
 
-
-
-
+//   useEffect(() => {
+//     const subscription = props.source.subscribe();
+//     return () => {
+//       // Clean up the subscription
+//       subscription.unsubscribe();
+//     };
+//   });
 
 
   return (
     <div className="App">
       <header className="App-header">
-
-        <div>
-      <label for="cars">Dataset</label>
-
-        <select onChange={(e) => selectLoadData(e.target.value)}name="dataset" id="dataset">
-          
-          <option value="result_biomarkers">Result biomarkers</option>
-          <option value="diagnose_count">Diagnosis group</option>
-
-        </select>
-
-        </div>
-
          {data && data.value && <DataLoader data={data}/>}
       </header>
     </div>

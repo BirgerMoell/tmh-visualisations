@@ -14,8 +14,9 @@ import './App.css';
 import { Fruit } from "./Fruit"
 import ulme from "./ulme.jpeg"
 import anna from "./anna.jpeg"
-import birger from "./birger2.jpeg"
 import Birger from "./birger/App"
+import Ulme from "./ulme/App"
+
 
 
 export default function App() {
@@ -180,9 +181,9 @@ function About() {
   return <h2>This is a cool about page</h2>;
 }
 
-function Ulme() {
-  return <Home imgSource={ulme} person="Ulme"></Home>
-}
+// function Ulme() {
+//   return <Home imgSource={ulme} person="Ulme"></Home>
+// }
 
 function Anna() {
   return  <Home imgSource={anna} person="Anna"></Home>
