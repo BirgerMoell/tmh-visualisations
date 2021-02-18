@@ -21,7 +21,7 @@ const patients = [
   {
     id: 2,
     name: "Tolvan Elvan",
-    personalNumber: "19900101-xxxx",
+    personalNumber: "19890101-xxxx",
     gender: "male",
     diagnosis: "Alzheimer",
     cognitiveProfile: {
@@ -38,7 +38,7 @@ const patients = [
   {
     id: 3,
     name: "Tolvan Tio",
-    personalNumber: "19900101-xxxx",
+    personalNumber: "19880101-xxxx",
     gender: "male",
     diagnosis: "Alzheimer",
     cognitiveProfile: {
@@ -55,7 +55,7 @@ const patients = [
   {
     id: 4,
     name: "Tolvan Nio",
-    personalNumber: "19900101-xxxx",
+    personalNumber: "19870101-xxxx",
     gender: "male",
     diagnosis: "Alzheimer",
     cognitiveProfile: {
@@ -72,7 +72,7 @@ const patients = [
   {
     id: 5,
     name: "Tolvan åtta",
-    personalNumber: "19900101-xxxx",
+    personalNumber: "19860101-xxxx",
     gender: "male",
     diagnosis: "Alzheimer",
     cognitiveProfile: {
@@ -113,7 +113,7 @@ export const Metrics = () => {
     <label for="patient">Choose a patient:</label>
     <select onChange={e => setPatient(patients[e.target.value-1])} name="patient" id="patient">
         {patients.map(patient =>
-         <option value={patient.id}>{patient.name}</option>
+         <option value={patient.id}>{patient.personalNumber}</option>
         )}
        
         </select>
@@ -142,7 +142,7 @@ const PercentileDataViewer = (patients, patient) => {
 }
 
 const getPercentageString = (percentage) => {
-    
+
 
 }
 

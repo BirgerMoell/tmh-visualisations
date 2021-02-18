@@ -194,10 +194,10 @@ function App() {
           <Metrics/>
 
         <div>
-      <label for="cars">Dataset</label>
+      <label for="datasets">Dataset</label>
 
          <select onChange={(e) => selectLoadData(e.target.value)}name="dataset" id="dataset">
-          
+         <option value="" selected disabled hidden>Select dataset</option>
           <option value="result_biomarkers">Result biomarkers</option>
           <option value="diagnose_count">Diagnosis group</option>
 
