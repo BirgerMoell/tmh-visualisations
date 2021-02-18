@@ -21,7 +21,7 @@ import Ulme from "./ulme/App"
 
 export default function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="App-container">
         <nav className="Nav-bar">
      
