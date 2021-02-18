@@ -32,13 +32,13 @@
 
     margin: 1rem;
     padding: 1rem;
-    background: linear-gradient(#333333, #666666);
+    background: linear-gradient(#eee, #ccc);
     border: 1px solid black;
 
   }
 
 .Patient-view-container {
-    background-color: grey;
+    background-color: rgba(200, 150, 100, 0.45);
 }
 
 .Percentile-20 {
