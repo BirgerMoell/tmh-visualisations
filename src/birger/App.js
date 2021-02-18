@@ -1,10 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
 import * as d3 from "d3";
+import { Metrics } from "./Metrics"
 
 
-function displayData(props) {
-
+let dataJson = 
+{
+  "value": [
+    {
+      "diagnose": "Healthy",
+      "count": "13"
+    },
+    {
+      "diagnose": "MCI",
+      "count": "7"
+    },
+    {
+      "diagnose": "Alzheimer",
+      "count": "4"
+    }
+  ],
+  "dataset": "diagnose_count",
+  "x": "diagnose",
+  "y": "count"
 }
 
 function DataLoader(props) {
@@ -22,7 +40,6 @@ function DataLoader(props) {
 
     const data = props.data && props.data.value
 
-    const dataset = props.data && props.data.dataset
     const x_value = props.data.x
     console.log("the data is", props.data)
     console.log("the x value is", x_value)
@@ -106,9 +123,7 @@ function DataLoader(props) {
                   .attr("height", d => y(Number(d[y_value])))
                   .attr("fill", d => d.diagnose === "Healthy" ? "lightgreen" : d.diagnose === "MCI" ? "lightblue": "pink")
 
-            }
-
-       
+            }       
         }
 
 
@@ -123,24 +138,26 @@ function App() {
 
   const [data, setData] = useState()
 
-   useEffect(() => {
-    const loadData = async () => {
-      //console.log("the d3 is", d3)
-      let uri = './data/biomarkers/diagnose_count.csv' 
-      let result = await d3.csv(uri)
-      setData( {"value": result,
-              "dataset": "diagnose_count",
-              "x": "diagnose",
-              "y": "count"
-            })
-      console.log("the data is", result)
-    }
-     if (!data) {
-      loadData()
-     }
-    
+  const loadData = async () => {
+    let uri = './data/biomarkers/diagnose_count.csv' 
+    let result = await d3.csv(uri)
 
-  }, [data]);
+    console.log("the data is", console.log(JSON.stringify(result)))
+
+    setData( {"value": result,
+            "dataset": "diagnose_count",
+            "x": "diagnose",
+            "y": "count"
+          })
+    console.log("the data is", result)
+  }
+
+  useEffect(() => {  
+    if (!data) {
+     loadData()
+    }
+    console.log('t');
+  });
 
 
   const selectLoadData = async (value) => {
@@ -170,28 +187,26 @@ function App() {
   }
 
 
-
-
-
-
   return (
     <div className="App">
-      <header className="App-header">
+    
+
+          <Metrics/>
 
         <div>
       <label for="cars">Dataset</label>
 
-        <select onChange={(e) => selectLoadData(e.target.value)}name="dataset" id="dataset">
+         <select onChange={(e) => selectLoadData(e.target.value)}name="dataset" id="dataset">
           
           <option value="result_biomarkers">Result biomarkers</option>
           <option value="diagnose_count">Diagnosis group</option>
 
-        </select>
+        </select> 
 
         </div>
 
          {data && data.value && <DataLoader data={data}/>}
-      </header>
+
     </div>
   );
 }
