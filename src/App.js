@@ -31,16 +31,16 @@ export default function App() {
               <Link to="/">Home</Link>
             </div>
             <div>
-              <Link to="/about">About</Link>
+              <Link to="about">About</Link>
             </div>
             <div>
-              <Link to="/ulme">Ulme</Link>
+              <Link to="ulme">Ulme</Link>
             </div>
             <div>
-              <Link to="/anna">Anna</Link>
+              <Link to="anna">Anna</Link>
             </div>
             <div>
-              <Link to="/birger">Birger</Link>
+              <Link to="birger">Birger</Link>
             </div>
 
         </nav>
@@ -64,8 +64,6 @@ export default function App() {
             <Front />
           </Route>
         </Switch>
-
-
 
         <Footer></Footer>
 
