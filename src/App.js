@@ -184,7 +184,7 @@ function About() {
 // }
 
 function Anna() {
-  return  <Home imgSource={anna} person="Anna"></Home>
+  return  <div>Coming soon</div>
 }
 
 // function Birger() {
