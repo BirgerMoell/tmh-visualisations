@@ -111,17 +111,32 @@ export const Metrics = () => {
     <div className="Patient-view-container">
 
     <label for="patient">Choose a patient:</label>
+
+
+
+
     <select onChange={e => setPatient(patients[e.target.value-1])} name="patient" id="patient">
         {patients.map(patient =>
          <option value={patient.id}>{patient.personalNumber}</option>
         )}
-       
+
+     
         </select>
 
     <div className="Overview-grid-container">
 
         {PercentileDataViewer(patients, patient)}
+       
     </div>
+
+
+    <div className="Probability-container">
+
+    <h5>This person has a {getProbability()}% probability of having a Alzheimer diagnosis </h5>
+
+    </div>
+
+
     </div>
   );
 };
@@ -141,9 +156,8 @@ const PercentileDataViewer = (patients, patient) => {
 
 }
 
-const getPercentageString = (percentage) => {
-
-
+const getProbability = (data) => {
+  return Math.floor(Math.random() * 100)
 }
 
 const getValues = (patients, patient, value) => {
